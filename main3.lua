@@ -1,5 +1,5 @@
---$Name: Библиотека 2$
---$Version: 0.1$
+--$Name: Библиотека 2: Сигнал$
+--$Version: 0.4$
 --$Author: Андрей Лобанов$
 
 require 'fmt'
@@ -22,14 +22,28 @@ end
 xact.restore = restore
 xact.walk = walk
 
+obj {
+   nam = 'КПК сейчас',
+   disp = 'КПК',
+   inv = 'Аккумулятор КПК разряжен.',
+}
+
+obj {
+   nam = 'КПК тогда',
+   disp = 'КПК',
+   inv = 'Интерфейс КПК.',
+}
+
 now = player {
    nam = 'сейчас',
    room = 'main',
+   obj = { 'КПК сейчас' },
 }
 
 than = player {
    nam = 'тогда',
    room = 'возле здания информационного центра',
+   obj = { 'КПК тогда' },
 }
 
 global {
@@ -43,7 +57,7 @@ declare {
 }
 
 local fnt = _'$fnt'
-fnt:face ('play', 'theme/Play-Bold.ttf', 33)
+fnt:face ('play', 'theme/Play-Bold.ttf', 36)
 
 function set_bg()
    theme.gfx.bg('theme/' .. bg)
@@ -65,6 +79,7 @@ function init()
    timer:set(1000)
  -- Включаем музыку до первого тика таймера
    game.timer()
+   change_pl(now)
 end
 
 function start()
@@ -79,21 +94,23 @@ obj {
 }
 
 room {
-	nam = 'main',
-	disp = 'БИБЛИОТЕКА 2: СИГНАЛ',
-	decor = fmt.b 'Версия:' .. fmt.tab '30%' .. '0.1^^' ..
-	   fmt.b 'Автор:' .. fmt.tab '30%' .. 'Андрей Лобанов^' ..
-	   fmt.b 'Автор Instead:' .. fmt.tab '30%' .. 'Пётр Косых^' ..
-	   fmt.b 'Музыка:' .. fmt.tab '30%' .. 'Mellow-D - curious mind.xm^' ..
-	   fmt.tab '30%' .. 'Mellow-D - finland 25c.xm^^' ..
-	   fmt.b 'Тестирование:' .. fmt.tab '30%' .. 'Место вакантно^^' ..
-	   'Специально для шестого паровозика.^^' ..
-	   '{@ walk ангар|Начать игру}^' ..
-	   '{@ walk об|Об игре}',
+   nam = 'main',
+   noinv = true,
+   disp = 'БИБЛИОТЕКА 2: СИГНАЛ',
+   decor = fmt.b 'Версия:' .. fmt.tab '30%' .. '0.4^^' ..
+	  fmt.b 'Автор:' .. fmt.tab '30%' .. 'Андрей Лобанов^' ..
+	  fmt.b 'Автор Instead:' .. fmt.tab '30%' .. 'Пётр Косых^' ..
+	  fmt.b 'Музыка:' .. fmt.tab '30%' .. 'Mellow-D - curious mind.xm^' ..
+	  fmt.tab '30%' .. 'Mellow-D - finland 25c.xm^^' ..
+	  fmt.b 'Тестирование:' .. fmt.tab '30%' .. 'Место вакантно^^' ..
+	  'Специально для шестого паровозика.^^' ..
+	  '{@ walk ангар|Начать игру}^' ..
+	  '{@ walk об|Об игре}',
 }
 
 room {
    nam = 'об',
+   noinv = true,
    title = 'ОБ ИГРЕ',
    decor = 'Игра является прямым продолжением игры "Библиотека". События игры развиваются вскоре после окончания первой части.^^' ..
 	  'Огромное спасибо MAlischka и  Ajenta Arrow. Без них не появилась бы эта часть истории о Библиотеке.^^' ..

@@ -13,10 +13,6 @@ room {
 		 return 'Я нахожусь в ангаре.'
 	  end
    end,
-   onenter = function(s, f)
-	  bg = 'hangar.png'
-	  set_bg()
-   end,
    onexit = function(s, t)
 	  if t ^ 'возле ангара' and _'первый сервитор'.n > 0 then
 		 lifeon 'первый сервитор'
@@ -475,6 +471,6 @@ cutscene {
 	  pn '[fading 16]'
 	  pn '[code bg = "alley.png"; set_bg()]'
 	  pn '[fading 16]'
-	  pn '[code change_pl "тогда"; place("сейчас", "main")]'
+	  pn '[code change_pl "тогда"]'
    end,
 }

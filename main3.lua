@@ -12,6 +12,7 @@ require 'lib/cutscene'
 require 'lib/fonts'
 dofile 'ep1.lua'
 dofile 'ep2.lua'
+dofile 'ep3.lua'
 
 instead.fading_value = 6
 
@@ -104,7 +105,7 @@ room {
 	  fmt.tab '30%' .. 'Mellow-D - finland 25c.xm^^' ..
 	  fmt.b 'Тестирование:' .. fmt.tab '30%' .. 'Место вакантно^^' ..
 	  'Специально для шестого паровозика.^^' ..
-	  '{@ walk ангар|Начать игру}^' ..
+	  '{@ walk начало|Начать игру}^' ..
 	  '{@ walk об|Об игре}',
 }
 
@@ -117,4 +118,24 @@ room {
 	  fmt.em 'Перед прохождением настоятельно рекомендуется пройти первую часть игры. Найти её вы можете в репозитории instead-игр по адресу http://instead-games.ru/.^^' ..
 	  'Лучший способ отблагодарить автора -- написать свою игру на движке Instead :)^^' ..
 	  '{@ walk main|Назад}',
+}
+
+cutscene {
+   nam = 'начало',
+   noinv = true,
+   disp = false,
+   decor = function(s)
+	  pn '[code bg = "bg.png"; set_bg()]'
+	  pn '[cls]'
+	  pn '[fading 16]'
+	  pn '[pause 1000]'
+	  pn(fmt.y('50%') .. fmt.c('{$fnt play|ГДЕ-ТО НА БИБЛИОТЕКЕ}'))
+	  pn '[fading 16]'
+	  pn '[pause 2000]'
+	  pn '[cls]'
+	  pn '[fading 16]'
+	  pn '[code bg = "hangar.png"; set_bg()]'
+	  pn '[fading 16]'
+	  pn '[code walk "ангар"]'
+   end,
 }

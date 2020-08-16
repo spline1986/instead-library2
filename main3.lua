@@ -1,5 +1,5 @@
 --$Name: Библиотека 2: Сигнал$
---$Version: 0.4$
+--$Version: 0.91$
 --$Author: Андрей Лобанов$
 
 require 'fmt'
@@ -13,6 +13,7 @@ require 'lib/fonts'
 dofile 'ep1.lua'
 dofile 'ep2.lua'
 dofile 'ep3.lua'
+dofile 'ep4.lua'
 
 instead.fading_value = 6
 
@@ -23,28 +24,15 @@ end
 xact.restore = restore
 xact.walk = walk
 
-obj {
-   nam = 'КПК сейчас',
-   disp = 'КПК',
-   inv = 'Аккумулятор КПК разряжен.',
-}
-
-obj {
-   nam = 'КПК тогда',
-   disp = 'КПК',
-   inv = 'Интерфейс КПК.',
-}
 
 now = player {
    nam = 'сейчас',
    room = 'main',
-   obj = { 'КПК сейчас' },
 }
 
 than = player {
    nam = 'тогда',
    room = 'возле здания информационного центра',
-   obj = { 'КПК тогда' },
 }
 
 global {
@@ -98,12 +86,14 @@ room {
    nam = 'main',
    noinv = true,
    disp = 'БИБЛИОТЕКА 2: СИГНАЛ',
-   decor = fmt.b 'Версия:' .. fmt.tab '30%' .. '0.4^^' ..
+   decor = fmt.b 'Версия:' .. fmt.tab '30%' .. '0.91^^' ..
 	  fmt.b 'Автор:' .. fmt.tab '30%' .. 'Андрей Лобанов^' ..
 	  fmt.b 'Автор Instead:' .. fmt.tab '30%' .. 'Пётр Косых^' ..
 	  fmt.b 'Музыка:' .. fmt.tab '30%' .. 'Mellow-D - curious mind.xm^' ..
 	  fmt.tab '30%' .. 'Mellow-D - finland 25c.xm^^' ..
-	  fmt.b 'Тестирование:' .. fmt.tab '30%' .. 'Место вакантно^^' ..
+	  fmt.b 'Тестирование:' .. fmt.tab '30%' .. 'Khaelenmore Thaal^' ..
+	  fmt.tab '30%' .. 'Бош Олег^' ..
+	  fmt.tab '30%' .. 'Артур А.^^' ..
 	  'Специально для шестого паровозика.^^' ..
 	  '{@ walk начало|Начать игру}^' ..
 	  '{@ walk об|Об игре}',
